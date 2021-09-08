@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Home.qml</file>
+        <file>Ports.qml</file>
+        <file>Device.qml</file>
     </qresource>
 </RCC>
