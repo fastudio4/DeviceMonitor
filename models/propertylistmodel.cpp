@@ -1,10 +1,8 @@
 #include "propertylistmodel.h"
-
-
 #include <QMetaProperty>
 
 
-PropertyListModel::PropertyListModel(QObject *parent )
+PropertyListModel::PropertyListModel(QObject *parent)
     :QAbstractListModel(parent)
 {
 

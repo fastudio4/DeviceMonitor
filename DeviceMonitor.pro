@@ -4,6 +4,7 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
+        models/listmodel.cpp \
         models/propertylistmodel.cpp \
         serial_port/devicertu.cpp \
         serial_port/serialportitem.cpp
@@ -22,6 +23,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    models/listmodel.h \
     models/propertylistmodel.h \
     serial_port/devicertu.h \
     serial_port/serialportitem.h

@@ -21,6 +21,11 @@ Page {
             ListView {
                 id: allComPorts
                 width: parent.width/2
+                model: portList
+                delegate: Text {
+                    id: name
+                    text: portName
+                }
 
             }
         }
