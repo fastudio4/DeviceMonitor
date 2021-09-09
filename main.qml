@@ -9,47 +9,31 @@ ApplicationWindow {
     height: 480
     visible: true
     title: qsTr("Device Monitor")
-//    header: Text{
-//        id: namePage
-//        text: swipe.itemAt(swipe.currentIndex).title
-//        font.family: "Arial"
-//        font.bold: true
-//        font.pointSize: 14
-//        anchors.centerIn: parent
-//    }
-
     SwipeView {
         id:swipe
         anchors.fill: parent
-        currentIndex: сarouselPages.currentIndex
-        Ports {
-            id: ports
-        }
-        Home {
-            id: home
-        }
-
-        Device {
-            id: device
-        }
+        currentIndex: swipeindicator.currentIndex
+        Port {}
+        Home {}
     }
-
+    footer: ToolBar {
         PageIndicator {
-            id: сarouselPages
+            id: swipeindicator
             count: swipe.count
             interactive: true
             currentIndex: swipe.currentIndex
-            anchors.bottom: swipe.bottom
-            anchors.horizontalCenter: swipe.horizontalCenter
             delegate:
                 Button {
-                    text: swipe.itemAt(index).title
-                    highlighted: index == swipe.currentIndex ? true : false
+                text: swipe.itemAt(index).title
+                highlighted: index == swipe.currentIndex ? false : true
+                font.pointSize: 14
                 onClicked: {
                     swipe.setCurrentIndex(index)
                 }
+
             }
         }
+    }
 
     InputPanel {
         id: inputPanel
