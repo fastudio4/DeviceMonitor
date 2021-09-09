@@ -7,6 +7,7 @@ SOURCES += \
         models/listmodel.cpp \
         models/propertylistmodel.cpp \
         serial_port/devicertu.cpp \
+        serial_port/listports.cpp \
         serial_port/serialportitem.cpp
 
 RESOURCES += qml.qrc
@@ -26,4 +27,5 @@ HEADERS += \
     models/listmodel.h \
     models/propertylistmodel.h \
     serial_port/devicertu.h \
+    serial_port/listports.h \
     serial_port/serialportitem.h

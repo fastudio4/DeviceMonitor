@@ -61,5 +61,19 @@ void SerialPortItem::addPropepry()
         m_namesProperty.append("timeout");
         m_namesProperty.append("retries");
         m_namesProperty.append("state");
+        m_namesProperty.append("removed");
     }
+}
+
+bool SerialPortItem::removed() const
+{
+    return m_removed;
+}
+
+void SerialPortItem::setRemoved(bool newRemoved)
+{
+    if (m_removed == newRemoved)
+        return;
+    m_removed = newRemoved;
+    emit removedChanged();
 }

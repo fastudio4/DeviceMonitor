@@ -9,7 +9,7 @@ Page {
         id: header
         width: parent.width
         height: 50
-//        color: "#353637"
+        //        color: "#353637"
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#6a6a6a" }
             GradientStop { position: 1.0; color: "#353637" }
@@ -19,7 +19,7 @@ Page {
             color: "white"
             x: 15
             font.pointSize: 14
-//            font.bold: true
+            //            font.bold: true
             text: qsTr("SERIAL POPT CONFIGURATION PAGE")
             anchors.verticalCenter: parent.verticalCenter
             layer.enabled: true
@@ -36,6 +36,13 @@ Page {
             height: 1
             anchors.bottom: parent.bottom
             color: "white"
+            layer.enabled: true
+            layer.effect: DropShadow {
+                verticalOffset: 1
+                color: "#70000000"
+                radius: 2
+                samples: 2
+            }
         }
     }
     Row {
@@ -50,8 +57,8 @@ Page {
                 width: parent.width
                 height: parent.height
                 gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#315796" }
-                    GradientStop { position: 1.0; color: "#0b2756" }
+                    GradientStop { position: 0.0; color: "#777777" }
+                    GradientStop { position: 1.0; color: "#444444" }
                 }
                 ListView {
                     id: allPorts
@@ -64,10 +71,8 @@ Page {
                         Text {
                             id:captionHeader
                             x:10
-//                            color: "#b0afb4"
-                            font.pointSize: 10
                             anchors.verticalCenter: parent.verticalCenter
-                            text: qsTr("List connected ports")
+                            text: qsTr("List connected serial ports")
 
                         }
                     }
@@ -83,17 +88,20 @@ Page {
                             anchors.centerIn: parent
                             width: allPorts.width - 10
                             height: 40
-                            radius: 5
-//                            border.width: 1
-//                            border.color: "#46454a"
                             color: "#353637"
+                            layer.enabled: true
+                            layer.effect: DropShadow {
+                                verticalOffset: 1
+                                color: "#70000000"
+                                radius: 2
+                                samples: 2
+                            }
                             Text {
                                 id: name
                                 text: portName
                                 font.pointSize: 12
                                 color: "white"
                                 anchors.centerIn: parent
-//                                font.bold: true
                                 layer.enabled: true
                                 layer.effect: DropShadow {
                                     verticalOffset: 1
@@ -112,9 +120,9 @@ Page {
                         }
                     }
                     footer: Text {
+                        id: footerList
                         x:10
-                        text: qsTr("To configure the required port, click on it!")
-//                        color: "#b0afb4"
+                        text: qsTr("Count serial port: " + allPorts.count)
                     }
                 }
             }
@@ -123,8 +131,19 @@ Page {
             id: cols2
             width: parent.width - cols1.width
             height: parent.height
-            TextField {
-
+            Rectangle {
+                id: layoutSettings
+                width: cols2.width
+                height: cols2.height
+                gradient: Gradient {
+                    orientation: Gradient.Horizontal
+                    GradientStop { position: 0.1; color: "#333333" }
+                    GradientStop { position: 1.1; color: "#555555" }
+                }
+                ListView {
+                    id: settingPort
+                    anchors.fill: parent
+                }
             }
         }
     }

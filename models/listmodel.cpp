@@ -18,16 +18,13 @@ void ListModel::setListData(const QList<QObject*> &data, const QStringList &role
     listObject.clear();
     userRoles.clear();
     listObject = data;
-//    for (int i = 0; i < data.count(); i++)
-//        listObject.append(data.at(i));
 //    beginResetModel();
     for(int i = 0; i < roles.count(); i++)
     {
         userRoles.insert(i+Qt::UserRole, roles.at(i).toUtf8());
     }
+
 //    endResetModel();
-
-
 }
 
 int ListModel::rowCount(const QModelIndex &parent) const
@@ -39,8 +36,8 @@ int ListModel::rowCount(const QModelIndex &parent) const
 QVariant ListModel::data(const QModelIndex &index, int role) const
 {
     if(!index.isValid()) return QVariant();
+//    qDebug() << listObject.at(index.row())->property(userRoles.value(role).data());
     return listObject.at(index.row())->property(userRoles.value(role).data());
-
 }
 
 QHash<int, QByteArray> ListModel::roleNames() const

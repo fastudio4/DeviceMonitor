@@ -2,10 +2,10 @@
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
 #include <QQmlContext>
-#include <QSerialPortInfo>
+
 #include <QDebug>
-//#include <QObject>
 #include "models/listmodel.h"
+#include "serial_port/listports.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,18 +27,13 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    QList<QObject*> objList;
-    QList<QSerialPortInfo> portsInfo = QSerialPortInfo::availablePorts();
-    for (int i = 0; i < portsInfo.count(); i++)
-    {
-        QObject *obj = new QObject(&engine);
-        obj->setProperty("portName", portsInfo.at(i).portName());
-        objList.append(obj);
-    }
-    ListModel listModel; //tests
-    listModel.setListData(objList, QStringList("portName")); //tests
+    ListPorts ports(&engine);
+    ListModel listModel(&engine); //tests
+    listModel.setListData(ports.test(), QStringList("portName")); //tests
     QQmlContext *context = engine.rootContext();
+//    context->setContextProperty("ports", &ports);
     context->setContextProperty("portList", &listModel);
+
 
     engine.load(url);
 
