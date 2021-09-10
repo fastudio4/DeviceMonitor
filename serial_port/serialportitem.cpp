@@ -1,15 +1,12 @@
 #include "serialportitem.h"
+#include <QVariant>
 
-SerialPortItem::SerialPortItem(QObject *parent)
-    :QSerialPort(parent)
-{
-    addPropepry();
-}
 
 SerialPortItem::SerialPortItem(const QString &name, QObject *parent)
     :QSerialPort(name, parent)
 {
     addPropepry();
+    setProperty("portName", QVariant(name));
 }
 
 SerialPortItem::~SerialPortItem()

@@ -1,5 +1,6 @@
 #include "listports.h"
 #include <QSerialPortInfo>
+#include <QDebug>
 
 ListPorts::ListPorts(QObject *parent)
     : QObject(parent)
@@ -32,19 +33,10 @@ void ListPorts::portChanged(QString name)
     {
         listObj.append(_ports.at(i)->portName());
     }
+//    qDebug() << _ports.at(listObj.indexOf(name));
     emit selectPort(_ports.at(listObj.indexOf(name)));
 }
 
-QList<QObject *> ListPorts::test()
-{
-    QList<QObject *> test;
-    for(int i = 0; i < _ports.count(); i++)
-    {
-//        QObject *obj = dynamic_cast<QObject *>(_ports.at(i));
-        test.append(_ports.at(i));
-    }
-    return test;
-}
 
 void ListPorts::createPorts()
 {
@@ -64,17 +56,44 @@ void ListPorts::portInList()
 {
     if(!_ports.isEmpty() && !portsName.isEmpty())
     {
-        QStringList listObj;
+        QStringList tmpListPorts;
+        QStringList tmpRemovedPorts;
         for(int i = 0; i < _ports.count(); i++)
         {
-            listObj.append(_ports.at(i)->portName());
+            tmpListPorts.append(_ports.at(i)->portName());
         }
         for(int i = 0; i < portsName.count(); i++)
         {
-            if(!listObj.contains(portsName.at(i)))
+            if(!tmpListPorts.contains(portsName.at(i)))
             {
                 SerialPortItem *port = new SerialPortItem(portsName.at(i), this);
                 _ports.append(port);
+            }
+        }
+        if(tmpListPorts.count() > portsName.count())
+        {
+            tmpRemovedPorts = tmpListPorts;
+            for(int i = 0; i < portsName.count(); i++)
+            {
+                tmpRemovedPorts.removeOne(portsName.at(i));
+            }
+            oflinePorts(tmpRemovedPorts);
+        }
+
+    }
+}
+void ListPorts::oflinePorts(const QStringList &ports)
+{
+    if(!ports.isEmpty())
+    {
+        for(int i = 0; i < _ports.count(); i++)
+        {
+            if(ports.contains(_ports.at(i)->portName()))
+            {
+                _ports.at(i)->setRemoved(true);
+            }
+            else {
+                _ports.at(i)->setRemoved(false);
             }
         }
     }

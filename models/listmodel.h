@@ -15,7 +15,7 @@ public:
     QHash<int, QByteArray> roleNames() const;
 
 public slots:
-    void setListData(const QList<QObject*> &data, const QStringList &roles);
+    void setListData(QObject *data, const QStringList &roles);
 private:
     QList<QObject*> listObject;
     QHash<int, QByteArray> userRoles;

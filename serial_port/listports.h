@@ -12,7 +12,6 @@ public:
     virtual ~ListPorts();
     Q_INVOKABLE QStringList ports();
     Q_INVOKABLE void portChanged(QString);
-    QList<QObject *> test();
 
 signals:
     void selectPort(QObject *);
@@ -20,6 +19,7 @@ signals:
 private:
     void createPorts();
     void portInList();
+    void oflinePorts(const QStringList &);
     QList<SerialPortItem *> _ports;
     QStringList portsName;
 };

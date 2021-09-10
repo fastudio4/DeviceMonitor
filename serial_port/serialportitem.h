@@ -15,7 +15,7 @@ class SerialPortItem : public QSerialPort
 
 
 public:
-    SerialPortItem(QObject *parent = nullptr);
+
     SerialPortItem(const QString &name, QObject *parent = nullptr);
     QList<DeviceRTU *> listDevice() { return this->findChildren<DeviceRTU *>(); }
     virtual ~SerialPortItem();

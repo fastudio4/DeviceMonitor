@@ -6,6 +6,7 @@
 #include <QDebug>
 #include "models/listmodel.h"
 #include "serial_port/listports.h"
+#include "models/propertylistmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -28,12 +29,15 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     ListPorts ports(&engine);
-    ListModel listModel(&engine); //tests
-    listModel.setListData(ports.test(), QStringList("portName")); //tests
+    ports.portChanged(ports.ports().at(0));
+    ListModel listModel(&engine);
+    PropertyListModel propertyModel(&engine);
+    listModel.setListData(&ports, QStringList("portName"));
     QQmlContext *context = engine.rootContext();
-//    context->setContextProperty("ports", &ports);
-    context->setContextProperty("portList", &listModel);
-
+    context->setContextProperty("ports", &ports);
+    context->setContextProperty("portsList", &listModel);
+    context->setContextProperty("portSettings", &propertyModel);
+    QObject::connect(&ports, SIGNAL(selectPort(QObject *)), &propertyModel, SLOT(setDataModel(QObject *)));
 
     engine.load(url);
 

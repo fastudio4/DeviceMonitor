@@ -78,7 +78,7 @@ Page {
                     }
                     width: parent.width
                     height: parent.height
-                    model: portList
+                    model: portsList
                     delegate: Rectangle {
                         id: layout
                         width: allPorts.width
@@ -97,8 +97,9 @@ Page {
                                 samples: 2
                             }
                             Text {
-                                id: name
-                                text: portName
+                                id: namePort
+                                property string nameP: portName
+                                text: nameP
                                 font.pointSize: 12
                                 color: "white"
                                 anchors.centerIn: parent
@@ -114,7 +115,7 @@ Page {
                                 id: touch
                                 anchors.fill: parent
                                 onClicked: {
-                                    console.log(name.text)
+                                    ports.portChanged(namePort.text)
                                 }
                             }
                         }
@@ -141,11 +142,23 @@ Page {
                     GradientStop { position: 1.1; color: "#555555" }
                 }
                 ListView {
-                    id: settingPort
-                    anchors.fill: parent
+                    id: settingsPort
+                    width: cols2.width
+                    height: cols2.height
+                    model: portSettings
+                    delegate: Rectangle {
+                        anchors.centerIn: parent
+                        width: settingsPort.width
+                        height: 50
+                        Text {
+                            text: stopBits
+                        }
+                    }
                 }
             }
         }
     }
-
+//    Component.onCompleted: {
+//        ports.portChanged(ports.ports()[0])
+//    }
 }

@@ -21,16 +21,17 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
     const QStringList &propertyList() const;
-
-
-protected:
     QHash<int, QByteArray> roleNames() const;
+
+
+
 public slots:
     void setDataModel(QObject *data, QString nameProperty = "namesProperty");
     Q_INVOKABLE QList<QVariant> enums(QString nameEnums);
 
 
 private:
+    void createRoles();
     QObject *pData;
     QStringList m_propertyList;
     QHash<int, QByteArray> userRoles;
