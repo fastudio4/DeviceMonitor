@@ -6,8 +6,6 @@
 #include <QMetaProperty>
 #include <QVariantMap>
 
-
-
 class PropertyListModel : public QAbstractListModel
 {
     Q_OBJECT

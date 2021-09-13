@@ -4,6 +4,7 @@
 #include <QQmlContext>
 
 #include <QDebug>
+#include "serial_port/serialportitem.h"
 #include "models/listmodel.h"
 #include "serial_port/listports.h"
 #include "models/propertylistmodel.h"
@@ -27,11 +28,12 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-
+    SerialPortItem emptyPort(&engine);
     ListPorts ports(&engine);
     ports.portChanged(ports.ports().at(0));
     ListModel listModel(&engine);
     PropertyListModel propertyModel(&engine);
+    propertyModel.setDataModel(&emptyPort);
     listModel.setListData(&ports, QStringList("portName"));
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("ports", &ports);

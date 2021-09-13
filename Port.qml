@@ -98,8 +98,7 @@ Page {
                             }
                             Text {
                                 id: namePort
-                                property string nameP: portName
-                                text: nameP
+                                text: portName
                                 font.pointSize: 12
                                 color: "white"
                                 anchors.centerIn: parent
@@ -151,14 +150,14 @@ Page {
                         width: settingsPort.width
                         height: 50
                         Text {
-                            text: stopBits
+                            text: baudRate
                         }
                     }
                 }
             }
         }
     }
-//    Component.onCompleted: {
-//        ports.portChanged(ports.ports()[0])
-//    }
+    Component.onCompleted: {
+        ports.portChanged(ports.ports()[0])
+    }
 }
