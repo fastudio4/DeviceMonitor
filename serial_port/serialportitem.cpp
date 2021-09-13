@@ -1,5 +1,6 @@
 #include "serialportitem.h"
 #include <QVariant>
+#include <QDebug>
 
 SerialPortItem::SerialPortItem(QObject *parent)
     :QSerialPort(parent)
@@ -7,7 +8,7 @@ SerialPortItem::SerialPortItem(QObject *parent)
     addPropepry();
     QString nameProp = "portName";
     setProperty("portName", nameProp);
-    m_portName = "empty";
+    m_name = "empty";
 }
 
 SerialPortItem::SerialPortItem(const QString &name, QObject *parent)
@@ -15,7 +16,7 @@ SerialPortItem::SerialPortItem(const QString &name, QObject *parent)
 {
     addPropepry();
     setProperty("portName", name);
-    m_portName = portName();
+    m_name = portName();
 }
 
 SerialPortItem::~SerialPortItem()
@@ -85,7 +86,7 @@ void SerialPortItem::setRemoved(bool newRemoved)
     emit removedChanged();
 }
 
-const QString &SerialPortItem::portName() const
+QString SerialPortItem::name()
 {
-    return m_portName;
+    return m_name;
 }

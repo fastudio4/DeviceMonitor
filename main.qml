@@ -1,7 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-//import QtQuick.Controls.Material 2.1
 import QtQuick.VirtualKeyboard 2.4
+import "./style/port"
+import "./style/home"
 
 ApplicationWindow {
     id: window
@@ -15,6 +16,7 @@ ApplicationWindow {
         currentIndex: swipeindicator.currentIndex
         Port {}
         Home {}
+
     }
     footer: ToolBar {
         PageIndicator {
@@ -41,7 +43,6 @@ ApplicationWindow {
         x: 0
         y: window.height
         width: window.width
-
         states: State {
             name: "visible"
             when: inputPanel.active

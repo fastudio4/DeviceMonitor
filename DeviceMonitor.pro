@@ -10,7 +10,8 @@ SOURCES += \
         serial_port/listports.cpp \
         serial_port/serialportitem.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += \
+    qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -29,3 +30,4 @@ HEADERS += \
     serial_port/devicertu.h \
     serial_port/listports.h \
     serial_port/serialportitem.h
+

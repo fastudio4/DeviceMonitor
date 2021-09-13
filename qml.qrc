@@ -1,7 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Home.qml</file>
-        <file>Port.qml</file>
+        <file>style/port/Port.qml</file>
+        <file>style/home/Home.qml</file>
+        <file>style/port/PortsViews.qml</file>
+        <file>style/port/SettingsPortViews.qml</file>
+        <file>style/port/ItemSeting.qml</file>
     </qresource>
 </RCC>

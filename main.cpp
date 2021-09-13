@@ -30,11 +30,15 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     SerialPortItem emptyPort(&engine);
     ListPorts ports(&engine);
-    ports.portChanged(ports.ports().at(0));
+
     ListModel listModel(&engine);
+
     PropertyListModel propertyModel(&engine);
+
     propertyModel.setDataModel(&emptyPort);
+
     listModel.setListData(&ports, QStringList("portName"));
+
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("ports", &ports);
     context->setContextProperty("portsList", &listModel);

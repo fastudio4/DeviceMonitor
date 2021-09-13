@@ -21,6 +21,7 @@ QStringList ListPorts::ports()
     {
         portsName.append(portsInfo.at(i).portName());
     }
+//    qDebug() << portsName;
     createPorts();
     return portsName;
 }
@@ -33,23 +34,30 @@ void ListPorts::portChanged(QString name)
     {
         listObj.append(_ports.at(i)->portName());
     }
-//    qDebug() << _ports.at(listObj.indexOf(name));
     emit selectPort(_ports.at(listObj.indexOf(name)));
 }
 
 
 void ListPorts::createPorts()
 {
-    if(portsName.isEmpty()) return;
+    if(portsName.isEmpty())
+    {
+//        qDebug() << portsName.count();
+        return;
+    }
     if(_ports.isEmpty())
     {
+//        qDebug() << "NOT EMPTY";
+//        qDebug() << portsName.count();
         for (int i = 0; i < portsName.count(); i++)
         {
+//            qDebug() << portsName.at(i);
             SerialPortItem *port = new SerialPortItem(portsName.at(i), this);
             _ports.append(port);
+//            qDebug() << port;
         }
     }
-    portInList();
+//    portInList();
 }
 
 void ListPorts::portInList()
