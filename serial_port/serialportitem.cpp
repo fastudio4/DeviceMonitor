@@ -47,13 +47,13 @@ void SerialPortItem::setRetries(int retries)
     emit retriesChanged(m_retries);
 }
 
-void SerialPortItem::setState(bool state)
+void SerialPortItem::setStatePort(bool state)
 {
     if (m_state == state)
         return;
 
     m_state = state;
-    emit stateChanged(m_state);
+    emit statePortChanged(m_state);
 }
 
 void SerialPortItem::addPropepry()
@@ -68,7 +68,7 @@ void SerialPortItem::addPropepry()
         m_namesProperty.append("flowControl");
         m_namesProperty.append("timeout");
         m_namesProperty.append("retries");
-        m_namesProperty.append("state");
+        m_namesProperty.append("statePort");
         m_namesProperty.append("removed");
     }
 }

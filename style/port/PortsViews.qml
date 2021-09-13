@@ -23,12 +23,12 @@ ListView {
     delegate: Rectangle {
         id: layout
         width: allPorts.width
-        height: 45
+        height: 60
         color: "transparent"
         Rectangle {
             anchors.centerIn: parent
             width: allPorts.width - 10
-            height: 40
+            height: 50
             color: "#353637"
             layer.enabled: true
             layer.effect: DropShadow {
@@ -40,7 +40,7 @@ ListView {
             Text {
                 id: namePort
                 text: portName
-                font.pointSize: 12
+                font.pointSize: 14
                 color: "white"
                 anchors.centerIn: parent
                 layer.enabled: true

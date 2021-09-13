@@ -11,7 +11,7 @@ class SerialPortItem : public QSerialPort
     Q_PROPERTY(QString name READ name)
     Q_PROPERTY(int timeout READ timeout WRITE setTimeout NOTIFY timeoutChanged)
     Q_PROPERTY(int retries READ retries WRITE setRetries NOTIFY retriesChanged)
-    Q_PROPERTY(bool state READ state WRITE setState NOTIFY stateChanged)
+    Q_PROPERTY(bool statePort READ statePort WRITE setStatePort NOTIFY statePortChanged)
     Q_PROPERTY(bool removed READ removed WRITE setRemoved NOTIFY removedChanged)
 
 
@@ -21,23 +21,44 @@ public:
     QList<DeviceRTU *> listDevice() { return this->findChildren<DeviceRTU *>(); }
     virtual ~SerialPortItem();
 
+    enum Timeout {
+        timeout500 = 500,
+        timeout1000 = 1000,
+        timeout1500 = 1500,
+        timeout2000 = 2000,
+        timeout2500 = 2500,
+        timeout3000 = 3000,
+        timeoutUnknown  = -1
+    };
+    Q_ENUM(Timeout)
+
+    enum Retries {
+        retries1 = 1,
+        retries2 = 2,
+        retries3 = 3,
+        retries4 = 4,
+        retries5 = 5,
+        retriesUnknown  = -1
+    };
+    Q_ENUM(Retries)
+
     const QStringList &namesProperty() const;
     QString name();
     int timeout() const { return m_timeout; }
     int retries() const { return m_retries; }
-    bool state() const { return m_state; }
+    bool statePort() const { return m_state; }
     bool removed() const;
     void setRemoved(bool newRemoved);
 
 public slots:
     void setTimeout(int timeout);
     void setRetries(int retries);
-    void setState(bool state);
+    void setStatePort(bool state);
 
 signals:
     void timeoutChanged(int timeout);
     void retriesChanged(int retries);
-    void stateChanged(bool state);
+    void statePortChanged(bool state);
 
     void removedChanged();
 
@@ -47,7 +68,7 @@ private:
     QString m_name;
     int m_timeout = 1000;
     int m_retries = 3;
-    bool m_state = false;
+    bool m_state = true;
     bool m_removed = false;
 
 

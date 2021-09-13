@@ -28,17 +28,13 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
     SerialPortItem emptyPort(&engine);
     ListPorts ports(&engine);
-
     ListModel listModel(&engine);
-
     PropertyListModel propertyModel(&engine);
-
     propertyModel.setDataModel(&emptyPort);
-
     listModel.setListData(&ports, QStringList("portName"));
-
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("ports", &ports);
     context->setContextProperty("portsList", &listModel);

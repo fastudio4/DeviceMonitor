@@ -19,7 +19,7 @@ Rectangle {
         anchors.left: parent.left
         text: nameParameter
         anchors.margins: 15
-        font.pointSize: 12
+        font.pointSize: 14
         color: "white"
     }
     ComboBox {
@@ -27,8 +27,11 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
         anchors.margins: 15
-        font.pointSize: 12
+        font.pointSize: 14
         model: comboList
+        onActivated:  {
+            dataChange (ids + "|" + listParams.currentText)
+        }
     }
     Component.onCompleted: {
         curentIndexCombo()

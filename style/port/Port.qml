@@ -8,7 +8,7 @@ Page {
     header: Rectangle {
         id: header
         width: parent.width
-        height: 50
+        height: 70
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#6a6a6a" }
             GradientStop { position: 1.0; color: "#353637" }
@@ -17,7 +17,7 @@ Page {
             id: title
             color: "white"
             x: 15
-            font.pointSize: 14
+            font.pointSize: 18
             text: qsTr("SERIAL POPT CONFIGURATION PAGE")
             anchors.verticalCenter: parent.verticalCenter
             layer.enabled: true
