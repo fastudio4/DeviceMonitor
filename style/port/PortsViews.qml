@@ -12,9 +12,9 @@ ListView {
         Text {
             id:captionHeader
             x:10
+            color: "white"
             anchors.verticalCenter: parent.verticalCenter
             text: qsTr("List connected serial ports")
-            
         }
     }
     width: parent.width
@@ -42,7 +42,25 @@ ListView {
                 text: portName
                 font.pointSize: 14
                 color: "white"
-                anchors.centerIn: parent
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.margins: 15
+                layer.enabled: true
+                layer.effect: DropShadow {
+                    verticalOffset: 1
+                    color: "#70000000"
+                    radius: 2
+                    samples: 2
+                }
+            }
+            Text {
+                id: portStateText
+                text: removed
+                font.pointSize: 14
+                color: "white"
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.margins: 15
                 layer.enabled: true
                 layer.effect: DropShadow {
                     verticalOffset: 1
@@ -63,6 +81,7 @@ ListView {
     footer: Text {
         id: footerList
         x:10
+        color: "white"
         text: qsTr("Count serial port: " + allPorts.count)
     }
 }

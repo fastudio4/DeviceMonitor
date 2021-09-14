@@ -16,7 +16,6 @@ PropertyListModel::~PropertyListModel()
 void PropertyListModel::setDataModel(QObject *data, QString nameProperty)
 {
     pData = data;
-//    qDebug() << pData;
     beginResetModel();
     m_propertyList.clear();
     userRoles.clear();
@@ -27,7 +26,7 @@ void PropertyListModel::setDataModel(QObject *data, QString nameProperty)
     m_propertyList = pData->property(c_property).toStringList();
     for(int i = 0; i < m_propertyList.count(); i++)
     {
-//        qDebug() << m_propertyList.at(i);
+
         userRoles.insert(Qt::UserRole + i, m_propertyList.at(i).toUtf8());
         rolesInt.append(Qt::UserRole + i);
     }
@@ -54,7 +53,6 @@ QVariant PropertyListModel::data(const QModelIndex &index, int role) const
     Q_UNUSED(index)
     if(userRoles.contains(role))
     {
-//        qDebug() << pData->property(userRoles.value(role).data());
         return pData->property(userRoles.value(role).data());
     }
 
@@ -78,7 +76,6 @@ bool PropertyListModel::setData(const QModelIndex &index, const QVariant &value,
 
 QHash<int, QByteArray> PropertyListModel::roleNames() const
 {
-//    qDebug() << userRoles;
     return userRoles;
 }
 

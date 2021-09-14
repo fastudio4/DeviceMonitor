@@ -7,6 +7,7 @@ ListView {
     width: cols2.width
     height: cols2.height
     model: portSettings
+    signal updateListPort()
     delegate: Rectangle {
         id: layoutparams
         width: settingsPort.width
@@ -121,9 +122,9 @@ ListView {
                         onDataState: {
                             var q_model_index = portSettings.index(index, 0);
                             portSettings.setData(q_model_index, value)
+                            allPorts.update()
                         }
                     }
-
                 }
             }
         }

@@ -9,6 +9,7 @@ SerialPortItem::SerialPortItem(QObject *parent)
     QString nameProp = "portName";
     setProperty("portName", nameProp);
     m_name = "empty";
+    setProperty("removed", m_removed);
 }
 
 SerialPortItem::SerialPortItem(const QString &name, QObject *parent)
@@ -16,6 +17,7 @@ SerialPortItem::SerialPortItem(const QString &name, QObject *parent)
 {
     addPropepry();
     setProperty("portName", name);
+    setProperty("removed", m_removed);
     m_name = portName();
 }
 

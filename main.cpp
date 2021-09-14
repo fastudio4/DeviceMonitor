@@ -34,7 +34,9 @@ int main(int argc, char *argv[])
     ListModel listModel(&engine);
     PropertyListModel propertyModel(&engine);
     propertyModel.setDataModel(&emptyPort);
-    listModel.setListData(&ports, QStringList("portName"));
+    QStringList listProperty;
+    listProperty << "portName" << "removed";
+    listModel.setListData(&ports, listProperty);
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("ports", &ports);
     context->setContextProperty("portsList", &listModel);

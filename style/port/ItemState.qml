@@ -1,6 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-//import QtQuick.Controls.Styles 2.12
+import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     property string ids
@@ -27,15 +27,6 @@ Rectangle {
         anchors.right: parent.right
         anchors.margins: 15
         checked: value
-//        style: SwitchStyle {
-//            groove: Rectangle {
-//                implicitWidth: 100
-//                implicitHeight: 20
-//                radius: 9
-//                border.color: control.activeFocus ? "darkblue" : "gray"
-//                border.width: 1
-//            }
-//        }
         onCheckedChanged: {
             dataState(ids + "|" + position.toString())
         }
