@@ -15,6 +15,7 @@ public:
 
 signals:
     void selectPort(QObject *);
+    void updateData(bool);
 
 private:
     void createPorts();

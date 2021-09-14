@@ -55,7 +55,7 @@ ListView {
             }
             Text {
                 id: portStateText
-                text: removed
+                text: statePort
                 font.pointSize: 14
                 color: "white"
                 anchors.verticalCenter: parent.verticalCenter
