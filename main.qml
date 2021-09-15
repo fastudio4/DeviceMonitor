@@ -4,6 +4,7 @@ import QtQuick.VirtualKeyboard 2.4
 
 import "./style/port"
 import "./style/home"
+import "./style/device"
 
 ApplicationWindow {
     id: window
@@ -15,7 +16,8 @@ ApplicationWindow {
         id:swipe
         anchors.fill: parent
         currentIndex: swipeindicator.currentIndex
-        Port {}
+        Ports {}
+        Device {}
         Home {}
 
     }

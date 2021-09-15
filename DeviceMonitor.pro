@@ -8,6 +8,7 @@ SOURCES += \
         models/propertylistmodel.cpp \
         serial_port/devicertu.cpp \
         serial_port/listports.cpp \
+        serial_port/listdevices.cpp \
         serial_port/serialportitem.cpp
 
 RESOURCES += \
@@ -29,5 +30,6 @@ HEADERS += \
     models/propertylistmodel.h \
     serial_port/devicertu.h \
     serial_port/listports.h \
+    serial_port/listdevices.h \
     serial_port/serialportitem.h
 

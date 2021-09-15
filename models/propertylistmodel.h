@@ -34,7 +34,6 @@ private:
     QHash<int, QByteArray> userRoles;
     QMap<QString, QMetaEnum> enumsList;
     QList<QVariant> m_enums;
-    QVector<int> rolesInt;
 };
 
 #endif // PROPERTYLISTMODEL_H

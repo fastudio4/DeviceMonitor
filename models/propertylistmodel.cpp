@@ -20,15 +20,12 @@ void PropertyListModel::setDataModel(QObject *data, QString nameProperty)
     m_propertyList.clear();
     userRoles.clear();
     enumsList.clear();
-    rolesInt.clear();
     QByteArray bt = nameProperty.toLocal8Bit();
     const char *c_property = bt.data();
     m_propertyList = pData->property(c_property).toStringList();
     for(int i = 0; i < m_propertyList.count(); i++)
     {
-
         userRoles.insert(Qt::UserRole + i, m_propertyList.at(i).toUtf8());
-        rolesInt.append(Qt::UserRole + i);
     }
     const QMetaObject *metaobject = pData->metaObject();
     int count = metaobject->enumeratorCount();
@@ -68,7 +65,6 @@ bool PropertyListModel::setData(const QModelIndex &index, const QVariant &value,
     QByteArray bt = nameProperty.toLocal8Bit();
     const char *c_property = bt.data();
     if(pData->setProperty(c_property, data)) {
-        emit dataChanged(QModelIndex(), QModelIndex(), rolesInt);
         return true;
     }
     return false;

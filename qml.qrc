@@ -1,11 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>style/port/Port.qml</file>
+        <file>style/port/Ports.qml</file>
         <file>style/home/Home.qml</file>
         <file>style/port/PortsViews.qml</file>
         <file>style/port/SettingsPortViews.qml</file>
         <file>style/port/ItemSeting.qml</file>
         <file>style/port/ItemState.qml</file>
+        <file>style/device/Device.qml</file>
     </qresource>
 </RCC>

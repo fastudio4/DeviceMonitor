@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 
 Page {
     id: port
-    title: "Port"
+    title: "Ports"
     header: Rectangle {
         id: header
         width: parent.width

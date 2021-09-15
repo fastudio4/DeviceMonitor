@@ -59,8 +59,7 @@ signals:
     void timeoutChanged(int timeout);
     void retriesChanged(int retries);
     void statePortChanged(bool state);
-
-    void removedChanged();
+    void removedChanged(bool removed);
 
 private:
     void addPropepry();

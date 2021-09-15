@@ -8,6 +8,7 @@ ListView {
         id: baseHeader
         width: parent.width
         height: 30
+
         color: "transparent"
         Text {
             id:captionHeader
@@ -29,35 +30,36 @@ ListView {
             anchors.centerIn: parent
             width: allPorts.width - 10
             height: 50
-            color: "#353637"
-            layer.enabled: true
+            color: allPorts.currentIndex == index ? "#353637" : "#494d50"
+            layer.enabled: allPorts.currentIndex == index ? false : true
             layer.effect: DropShadow {
                 verticalOffset: 1
-                color: "#70000000"
-                radius: 2
-                samples: 2
+                color: "#90000000"
+                radius: 1
+                samples: 3
             }
             Text {
-                id: namePort
+                id: namePort      
                 text: portName
                 font.pointSize: 14
-                color: "white"
+                color: removed ? "grey" : "white"
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.margins: 15
                 layer.enabled: true
                 layer.effect: DropShadow {
-                    verticalOffset: 1
+                    verticalOffset: 2
                     color: "#70000000"
                     radius: 2
                     samples: 2
                 }
             }
-            Text {
+            Rectangle {
                 id: portStateText
-                text: statePort
-                font.pointSize: 14
-                color: "white"
+                width: 40
+                height: 10
+                radius: 2
+                color: statePort ? "green" : "red"
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.margins: 15
@@ -74,6 +76,7 @@ ListView {
                 anchors.fill: parent
                 onClicked: {
                     ports.portChanged(namePort.text)
+                    allPorts.currentIndex = index
                 }
             }
         }

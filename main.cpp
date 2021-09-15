@@ -35,14 +35,14 @@ int main(int argc, char *argv[])
     PropertyListModel propertyModel(&engine);
     propertyModel.setDataModel(&emptyPort);
     QStringList listProperty;
-    listProperty << "portName" << "statePort";
+    listProperty << "portName" << "statePort" << "removed";
     listModel.setListData(&ports, listProperty);
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("ports", &ports);
     context->setContextProperty("portsList", &listModel);
     context->setContextProperty("portSettings", &propertyModel);
     QObject::connect(&ports, SIGNAL(selectPort(QObject *)), &propertyModel, SLOT(setDataModel(QObject *)));
-    QObject::connect(&ports, SIGNAL(updateData(bool)), &listModel, SLOT(update(bool)));
+    QObject::connect(&ports, SIGNAL(updateData(QObject *, QStringList)), &listModel, SLOT(setListData(QObject *, QStringList)));
 
     engine.load(url);
 

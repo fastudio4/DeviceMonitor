@@ -85,7 +85,7 @@ void SerialPortItem::setRemoved(bool newRemoved)
     if (m_removed == newRemoved)
         return;
     m_removed = newRemoved;
-    emit removedChanged();
+    emit removedChanged(m_removed);
 }
 
 QString SerialPortItem::name()
