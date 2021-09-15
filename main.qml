@@ -16,8 +16,9 @@ ApplicationWindow {
         id:swipe
         anchors.fill: parent
         currentIndex: swipeindicator.currentIndex
-        Ports {}
         Device {}
+        Ports {}
+
         Home {}
 
     }

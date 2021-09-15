@@ -15,7 +15,7 @@ ListView {
             x:10
             color: "white"
             anchors.verticalCenter: parent.verticalCenter
-            text: qsTr("List connected serial ports")
+            text: qsTr("List all serial ports")
         }
     }
     width: parent.width
@@ -28,7 +28,7 @@ ListView {
         color: "transparent"
         Rectangle {
             anchors.centerIn: parent
-            width: allPorts.width - 10
+            width: allPorts.width - 20
             height: 50
             color: allPorts.currentIndex == index ? "#353637" : "#494d50"
             layer.enabled: allPorts.currentIndex == index ? false : true

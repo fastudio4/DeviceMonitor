@@ -10,7 +10,7 @@ Page {
         width: parent.width
         height: 70
         gradient: Gradient {
-            GradientStop { position: 0.0; color: "#6a6a6a" }
+            GradientStop { position: 0.0; color: "#737577" }
             GradientStop { position: 1.0; color: "#353637" }
         }
         Text {
@@ -18,7 +18,7 @@ Page {
             color: "white"
             x: 15
             font.pointSize: 18
-            text: qsTr("SERIAL POPT CONFIGURATION PAGE")
+            text: qsTr("SERIAL PORTS CONFIGURATION PAGE")
             anchors.verticalCenter: parent.verticalCenter
             layer.enabled: true
             layer.effect: DropShadow {
@@ -60,6 +60,19 @@ Page {
                 PortsViews {
                     id: allPorts
                 }
+            }
+        }
+        Rectangle {
+            width: 1
+            height: parent.height
+            anchors.bottom: parent.bottom
+            color: "white"
+            layer.enabled: true
+            layer.effect: DropShadow {
+                verticalOffset: 1
+                color: "#70000000"
+                radius: 2
+                samples: 2
             }
         }
         Column {
