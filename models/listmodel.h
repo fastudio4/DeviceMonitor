@@ -7,7 +7,7 @@ class ListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit ListModel(QObject *parent = nullptr);
+    explicit ListModel(const QStringList &roles, QObject *parent = nullptr);
     virtual ~ListModel();
 
     int rowCount(const QModelIndex &parent) const;
@@ -15,7 +15,7 @@ public:
     QHash<int, QByteArray> roleNames() const;
 
 public slots:
-    void setListData(QObject *data, const QStringList &roles);
+    void setListData(QObject *data);
 
 private:
     QList<QObject*> listObject;

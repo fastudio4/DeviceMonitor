@@ -1,10 +1,13 @@
 #include "listmodel.h"
 #include <QtDebug>
 
-ListModel::ListModel(QObject *parent)
+ListModel::ListModel(const QStringList &roles, QObject *parent)
     : QAbstractListModel(parent)
 {
-
+    for(int i = 0; i < roles.count(); i++)
+    {
+        userRoles.insert(i + Qt::UserRole, roles.at(i).toUtf8());
+    }
 }
 
 ListModel::~ListModel()
@@ -12,18 +15,12 @@ ListModel::~ListModel()
 
 }
 
-void ListModel::setListData(QObject *data, const QStringList &roles)
+void ListModel::setListData(QObject *data)
 {
     listObject.clear();
     listObject = data->children();
     beginResetModel();
-    userRoles.clear();
-    for(int i = 0; i < roles.count(); i++)
-    {
-        userRoles.insert(i + Qt::UserRole, roles.at(i).toUtf8());
-    }
     endResetModel();
-
 }
 
 

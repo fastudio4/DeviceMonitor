@@ -11,7 +11,7 @@ class DeviceRTU : public QObject
     Q_PROPERTY(int idDevice READ idDevice WRITE setIdDevice NOTIFY idDeviceChanged)
     Q_PROPERTY(int startAddr READ startAddr WRITE setStartAddr NOTIFY startAddrChanged)
     Q_PROPERTY(int count READ count WRITE setCount NOTIFY countChanged)
-    Q_PROPERTY(bool state READ state WRITE setState NOTIFY stateChanged)
+    Q_PROPERTY(bool stateDevice READ stateDevice WRITE setStateDevice NOTIFY stateDeviceChanged)
 
     Q_PROPERTY(QStringList namesProperty READ namesProperty)
 public:
@@ -24,6 +24,13 @@ public:
         HoldingRegisters
     };
     Q_ENUM(RegisterType)
+
+    enum TypeOperation {
+        Read,
+        Write,
+        Unknow = -1,
+    };
+    Q_ENUM(TypeOperation)
 
     explicit DeviceRTU(QString shortDesc = "",
                        int idDevice = 2,
@@ -38,7 +45,7 @@ public:
     int idDevice() const { return m_idDevice; }
     int startAddr() const { return m_startAddr; }
     int count() const { return m_count; }
-    bool state() const { return m_state; }
+    bool stateDevice() const { return m_stateDevice; }
 
     QModbusDataUnit* dataUnit() { return unit; }
     QVector<quint16>* dataValue() { return values; }
@@ -50,21 +57,21 @@ public slots:
     void setIdDevice(int idDevice);
     void setStartAddr(int startAddr);
     void setCount(int count);
-    void setState(bool state);
+    void setStateDevice(bool state);
 
 signals:
     void shortDescChanged(QString shortDesc);
     void idDeviceChanged(int idDevice);
     void startAddrChanged(int startAddr);
     void countChanged(int count);
-    void stateChanged(bool state);
+    void stateDeviceChanged(bool state);
 
 private:
     QString m_shortDesc;
     int m_idDevice;
     int m_startAddr;
     int m_count;
-    bool m_state;
+    bool m_stateDevice;
     QVector<quint16> *values;
     int countError;
     QString lastError;

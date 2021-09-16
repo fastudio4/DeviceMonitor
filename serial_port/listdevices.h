@@ -11,7 +11,9 @@ public:
     explicit ListDevices(QObject *parent = nullptr);
     virtual ~ListDevices();
 
+
 signals:
+    void devices();
 private:
     QList<DeviceRTU*> _ports;
 };

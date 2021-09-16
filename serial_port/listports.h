@@ -15,7 +15,7 @@ public:
 
 signals:
     void selectPort(QObject *);
-    void updateData(QObject *, QStringList);
+    void updateData(QObject *);
 private slots:
     void update(bool);
 

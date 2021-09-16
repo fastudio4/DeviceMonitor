@@ -8,5 +8,8 @@
         <file>style/port/ItemSeting.qml</file>
         <file>style/port/ItemState.qml</file>
         <file>style/device/Device.qml</file>
+        <file>style/device/ListDevice.qml</file>
+        <file>style/device/NewDevice.qml</file>
+        <file>style/device/ItemDeviceSettings.qml</file>
     </qresource>
 </RCC>

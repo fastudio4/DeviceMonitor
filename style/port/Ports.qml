@@ -28,6 +28,16 @@ Page {
                 samples: 2
             }
         }
+        Button {
+            text: qsTr("UPDATE LIST")
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.margins: 15
+            font.pointSize: 14
+            onClicked: {
+                console.log("NEW")
+            }
+        }
         Rectangle {
             width: parent.width
             height: 1

@@ -29,20 +29,28 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
+    QStringList portsPropperty;
+    portsPropperty << "portName" << "statePort" << "removed";
+
+    QStringList devisesPropperty;
+    devisesPropperty << "shortDesc" << "idDevice" << "removed";
+
     SerialPortItem emptyPort(&engine);
     ListPorts ports(&engine);
-    ListModel listModel(&engine);
+    ListModel portModel(portsPropperty,&engine);
+    ListModel devicesModel(devisesPropperty,&engine);
     PropertyListModel propertyModel(&engine);
     propertyModel.setDataModel(&emptyPort);
-    QStringList listProperty;
-    listProperty << "portName" << "statePort" << "removed";
-    listModel.setListData(&ports, listProperty);
+
+    portModel.setListData(&ports);
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("ports", &ports);
-    context->setContextProperty("portsList", &listModel);
+    context->setContextProperty("portsList", &portModel);
     context->setContextProperty("portSettings", &propertyModel);
+    context->setContextProperty("devicesModel", &devicesModel);
     QObject::connect(&ports, SIGNAL(selectPort(QObject *)), &propertyModel, SLOT(setDataModel(QObject *)));
-    QObject::connect(&ports, SIGNAL(updateData(QObject *, QStringList)), &listModel, SLOT(setListData(QObject *, QStringList)));
+    QObject::connect(&ports, SIGNAL(updateData(QObject *)), &portModel, SLOT(setListData(QObject *)));
+    QObject::connect(&ports, SIGNAL(updateData(QObject * )), &devicesModel, SLOT(setListData(QObject *)));
 
     engine.load(url);
 

@@ -10,7 +10,7 @@ DeviceRTU::DeviceRTU(QString shortDesc,
                      bool state,
                      QObject *parent)
     :QObject(parent), m_shortDesc(shortDesc), m_idDevice(idDevice),
-      m_startAddr(startAddr), m_count(count), m_state(state)
+      m_startAddr(startAddr), m_count(count), m_stateDevice(state)
 {
     values = new QVector<quint16>();
     values->resize(m_count);
@@ -80,13 +80,13 @@ void DeviceRTU::setCount(int count)
     emit countChanged(m_count);
 }
 
-void DeviceRTU::setState(bool state)
+void DeviceRTU::setStateDevice(bool state)
 {
-    if (m_state == state)
+    if (m_stateDevice == state)
         return;
 
-    m_state = state;
-    emit stateChanged(m_state);
+    m_stateDevice = state;
+    emit stateDeviceChanged(m_stateDevice);
 }
 
 void DeviceRTU::addPropepry()

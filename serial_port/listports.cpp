@@ -39,9 +39,7 @@ void ListPorts::portChanged(QString name)
 void ListPorts::update(bool value)
 {
     Q_UNUSED(value)
-    QStringList listProperty;
-    listProperty << "portName" << "statePort" << "removed";
-    emit updateData(this, listProperty);
+    emit updateData(this);
 }
 
 
@@ -55,7 +53,6 @@ void ListPorts::createPorts()
             SerialPortItem *port = new SerialPortItem(portsName.at(i), this);
             connect(port, SIGNAL(statePortChanged(bool)), this, SLOT(update(bool)));
             connect(port, SIGNAL(removedChanged(bool)), this, SLOT(update(bool)));
-
             _ports.append(port);
         }
     }

@@ -13,7 +13,7 @@ Page {
         color: "#73d216"
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#626296" }
-            GradientStop { position: 1.0; color: "#353637" }
+            GradientStop { position: 1.0; color: "#282844" }
         }
         Text {
             id: titleDevice
@@ -28,6 +28,24 @@ Page {
                 color: "#70000000"
                 radius: 2
                 samples: 2
+            }
+        }
+        Button {
+            id: addDevice
+            text: qsTr("NEW DEVICE")
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.margins: 15
+            font.pointSize: 14
+            highlighted: {
+                color: "green"
+                stackViewDevice.currentItem == newDevice ? true : false
+            }
+            onClicked: {
+                if(stackViewDevice.currentItem != newDevice) {
+                    stackViewDevice.push(newDevice)
+                }
+
             }
         }
         Rectangle {
@@ -66,7 +84,6 @@ Page {
                     spacing: 10
                     Text {
                         color: "white"
-                        wrapMode: "WordWrap"
                         text: qsTr("Select the serial port \n to view connected devices")
                     }
                     ComboBox {
@@ -76,6 +93,11 @@ Page {
                         textRole: "portName"
                         font.pointSize: 14
                     }
+                    ListDevice {
+                        id: listDevice
+                    }
+
+
                 }
 
             }
@@ -106,9 +128,21 @@ Page {
                     GradientStop { position: 0.1; color: "#363654" }
                     GradientStop { position: 1.1; color: "#626296" }
                 }
-                //                SettingsPortViews {
-                //                    id: settingsPort
-                //                }
+                StackView {
+                    id: stackViewDevice
+                    anchors.fill: parent
+                    initialItem: devicesSettings
+
+                }
+
+                ItemDeviceSettings {
+                    id: devicesSettings
+                }
+
+                NewDevice {
+                    id: newDevice
+                    visible: false
+                }
             }
         }
     }
