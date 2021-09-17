@@ -11,11 +11,15 @@ public:
     explicit ListDevices(QObject *parent = nullptr);
     virtual ~ListDevices();
 
-
 signals:
-    void devices();
-private:
-    QList<DeviceRTU*> _ports;
+    void newDevice();
+    void portChanged(QString);
+    void updatePorts();
+
+public slots:
+//    void onPortChanged();
+
+
 };
 
 #endif // LISTDEVICES_H

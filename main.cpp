@@ -8,6 +8,7 @@
 #include "models/listmodel.h"
 #include "serial_port/listports.h"
 #include "models/propertylistmodel.h"
+#include "serial_port/listdevices.h"
 
 int main(int argc, char *argv[])
 {
@@ -33,21 +34,25 @@ int main(int argc, char *argv[])
     portsPropperty << "portName" << "statePort" << "removed";
 
     QStringList devisesPropperty;
-    devisesPropperty << "shortDesc" << "idDevice" << "removed";
+    devisesPropperty << "shortDesc" << "idDevice" << "stateDevice";
 
     SerialPortItem emptyPort(&engine);
     ListPorts ports(&engine);
+    ListDevices devOnPort(&engine);
+
     ListModel portModel(portsPropperty,&engine);
     ListModel devicesModel(devisesPropperty,&engine);
     PropertyListModel propertyModel(&engine);
     propertyModel.setDataModel(&emptyPort);
 
     portModel.setListData(&ports);
+
     QQmlContext *context = engine.rootContext();
     context->setContextProperty("ports", &ports);
     context->setContextProperty("portsList", &portModel);
+    context->setContextProperty("deviceList", &devOnPort);
     context->setContextProperty("portSettings", &propertyModel);
-    context->setContextProperty("devicesModel", &devicesModel);
+    context->setContextProperty("devicesSettings", &devicesModel);
     QObject::connect(&ports, SIGNAL(selectPort(QObject *)), &propertyModel, SLOT(setDataModel(QObject *)));
     QObject::connect(&ports, SIGNAL(updateData(QObject *)), &portModel, SLOT(setListData(QObject *)));
     QObject::connect(&ports, SIGNAL(updateData(QObject * )), &devicesModel, SLOT(setListData(QObject *)));

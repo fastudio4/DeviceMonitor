@@ -1,21 +1,15 @@
 #include <QModbusDataUnit>
 #include "devicertu.h"
 
-
-DeviceRTU::DeviceRTU(QString shortDesc,
-                     int idDevice,
-                     int type,
-                     int startAddr,
-                     int count,
-                     bool state,
-                     QObject *parent)
+DeviceRTU::DeviceRTU(QString shortDesc,int idDevice, int operation, int startAddr,
+                     int count, int typeReg, bool state, QObject *parent)
     :QObject(parent), m_shortDesc(shortDesc), m_idDevice(idDevice),
-      m_startAddr(startAddr), m_count(count), m_stateDevice(state)
+    m_startAddr(startAddr), m_count(count) , m_typeOperation(operation), m_stateDevice(state)
 {
     values = new QVector<quint16>();
     values->resize(m_count);
     unit = new QModbusDataUnit();
-    switch (type) {
+    switch (typeReg) {
     case DiscreteInputs:
         unit->setRegisterType(QModbusDataUnit::DiscreteInputs);
         break;
@@ -35,6 +29,7 @@ DeviceRTU::DeviceRTU(QString shortDesc,
     unit->setValueCount(m_count);
     addPropepry();
 }
+
 
 DeviceRTU::~DeviceRTU()
 {
@@ -89,12 +84,22 @@ void DeviceRTU::setStateDevice(bool state)
     emit stateDeviceChanged(m_stateDevice);
 }
 
+void DeviceRTU::setTypeOperation(int typeOperation)
+{
+    if (m_typeOperation == typeOperation)
+        return;
+
+    m_typeOperation = typeOperation;
+    emit typeOperationChanged(m_typeOperation);
+}
+
 void DeviceRTU::addPropepry()
 {
     if(m_namesProperty.isEmpty())
     {
         m_namesProperty.append("shortDesc");
         m_namesProperty.append("idDevice");
+        m_namesProperty.append("typeOperation");
         m_namesProperty.append("typeRegisters");
         m_namesProperty.append("startAddr");
         m_namesProperty.append("countValue");

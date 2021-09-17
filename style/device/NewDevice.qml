@@ -12,9 +12,14 @@ Page {
     Column {
         spacing: 15
         Rectangle {
+            width: stackViewDevice.width
+            height: 10
+            color: "transparent"
+        }
+        Rectangle {
             id: shortDescLayout
             width: stackViewDevice.width
-            height: 50
+            height: 35
             color: "transparent"
             Text {
                 id:textShortDesc
@@ -49,37 +54,103 @@ Page {
                 color: "white"
             }
             SpinBox {
+                id: idDev
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left:  textId.right
                 font.pointSize: 14
                 editable: true
-                width: shortDesc.width
+//                width: shortDesc.width
                 anchors.margins: 15
+            }
+            Text {
+                id:textOperation
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: idDev.right
+                anchors.margins: 15
+                text: qsTr("Operation")
+                font.pointSize: 14
+                color: "white"
+            }
+
+            ComboBox {
+                id:operationCombo
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left:  textOperation.right
+                font.pointSize: 14
+                width: 130
+                anchors.margins: 15
+
+                model: ["Read", "Write"]
             }
         }
         Rectangle {
-            id: operationLayout
+            id: registersAddrCountLayout
             width: stackViewDevice.width
             height: 35
             color: "transparent"
             Text {
-                id:textOperation
+                id:textRegistersAddr
                 width: textShortDesc.width
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.margins: 15
-                text: qsTr("Operation device")
+                text: qsTr("Start register")
+                font.pointSize: 14
+                color: "white"
+            }
+            SpinBox {
+                id: registersAddr
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left:  textRegistersAddr.right
+                font.pointSize: 14
+                editable: true
+                width: 130
+                anchors.margins: 15
+            }
+            Text {
+                id: textcountRegisters
+//                width: textOperation.width
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: registersAddr.right
+                anchors.margins: 15
+                text: qsTr("Count reg.")
+                font.pointSize: 14
+                color: "white"
+            }
+            SpinBox {
+                id: countRegisters
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left:  textcountRegisters.right
+                font.pointSize: 14
+                editable: true
+                width: 130
+                anchors.margins: 15
+            }
+        }
+        Rectangle {
+            id: portConnectedLayout
+            width: stackViewDevice.width
+            height: 35
+            color: "transparent"
+            Text {
+                id:textPortConnected
+                width: textShortDesc.width
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.margins: 15
+                text: qsTr("Connect to port")
                 font.pointSize: 14
                 color: "white"
             }
             ComboBox {
+                id: portConnected
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left:  textOperation.right
-                font.pointSize: 14
+                anchors.left:  textPortConnected.right
                 width: shortDesc.width
+                font.pointSize: 14
                 anchors.margins: 15
-
-                model: ["Read", "Write"]
+                model: portsList
+                textRole: "portName"
             }
         }
         Rectangle {
@@ -98,6 +169,7 @@ Page {
                 color: "white"
             }
             ComboBox {
+                id:registersType
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left:  textRegisters.right
                 width: shortDesc.width
@@ -107,43 +179,24 @@ Page {
             }
         }
         Rectangle {
-            id: registersAddrCountLayout
+            id: stateDeviceLayout
             width: stackViewDevice.width
             height: 35
             color: "transparent"
             Text {
-                id:textRegistersAddr
+                id: textStateDevice
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.margins: 15
-                text: qsTr("Start address")
+                text: qsTr("State device")
                 font.pointSize: 14
                 color: "white"
             }
-            SpinBox {
-                id: registersAddr
+            Switch {
+                id:stateDeviceSwitch
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left:  textRegistersAddr.right
-                font.pointSize: 14
-                editable: true
-                anchors.margins: 15
-            }
-            Text {
-                id: textcountRegisters
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: registersAddr.right
-                anchors.margins: 15
-                text: qsTr("Count reg.")
-                font.pointSize: 14
-                color: "white"
-            }
-            SpinBox {
-                id: countRegisters
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left:  textcountRegisters.right
-                font.pointSize: 14
-                editable: true
-                anchors.margins: 15
+                anchors.left: textStateDevice.right
+                anchors.margins: 30
             }
         }
     }
@@ -154,7 +207,16 @@ Page {
         anchors.margins: 15
         font.pointSize: 14
         onClicked: {
-            stackViewDevice.pop()
+//            stackViewDevice.pop()
+//            shortDesc.text
+//            idDev.value
+//            operationCombo.currentIndex
+//            registersAddr.value
+//            countRegisters.value
+//            portConnected.currentText
+//            registersType.currentIndex
+//            stateDeviceSwitch.position
+            console.log()
         }
     }
 }
