@@ -14,10 +14,12 @@ public:
     Q_INVOKABLE void portChanged(QString);
 
 signals:
+    void newDev(QObject *);
     void selectPort(QObject *);
     void updateData(QObject *);
 private slots:
     void update(bool);
+    void objPort(QString);
 
 private:
     void createPorts();

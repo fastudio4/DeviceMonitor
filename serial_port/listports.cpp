@@ -10,7 +10,8 @@ ListPorts::ListPorts(QObject *parent)
 
 ListPorts::~ListPorts()
 {
-
+    qDeleteAll(_ports.begin(), _ports.end());
+    _ports.clear();
 }
 
 QStringList ListPorts::ports()
@@ -34,6 +35,19 @@ void ListPorts::portChanged(QString name)
         listObj.append(_ports.at(i)->portName());
     }
     emit selectPort(_ports.at(listObj.indexOf(name)));
+}
+
+void ListPorts::objPort(QString portName)
+{
+    int i = 0;
+    for(; i < _ports.count(); i++)
+    {
+        if(portName == _ports.at(i)->portName())
+        {
+            emit newDev(_ports.at(i));
+        }
+    }
+
 }
 
 void ListPorts::update(bool value)

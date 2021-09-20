@@ -207,16 +207,25 @@ Page {
         anchors.margins: 15
         font.pointSize: 14
         onClicked: {
+            deviceList.newDevice(
+                        shortDesc.text,
+                        idDev.value,
+                        operationCombo.currentIndex,
+                        registersAddr.value,
+                        countRegisters.value,
+                        portConnected.currentText,
+                        registersType.currentIndex,
+                        stateDeviceSwitch.position,
+                        )
 //            stackViewDevice.pop()
-//            shortDesc.text
-//            idDev.value
-//            operationCombo.currentIndex
-//            registersAddr.value
-//            countRegisters.value
-//            portConnected.currentText
-//            registersType.currentIndex
-//            stateDeviceSwitch.position
-            console.log()
+//
+//
+//
+//
+//
+//
+//
+//
         }
     }
 }

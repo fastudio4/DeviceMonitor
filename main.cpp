@@ -56,6 +56,9 @@ int main(int argc, char *argv[])
     QObject::connect(&ports, SIGNAL(selectPort(QObject *)), &propertyModel, SLOT(setDataModel(QObject *)));
     QObject::connect(&ports, SIGNAL(updateData(QObject *)), &portModel, SLOT(setListData(QObject *)));
     QObject::connect(&ports, SIGNAL(updateData(QObject * )), &devicesModel, SLOT(setListData(QObject *)));
+    QObject::connect(&devOnPort, SIGNAL(newDevice(QString)), &ports, SLOT(objPort(QString)));
+    QObject::connect(&ports, SIGNAL(newDev(QObject * )), &devOnPort, SLOT(parentDevice(QObject *)));
+
 
     engine.load(url);
 

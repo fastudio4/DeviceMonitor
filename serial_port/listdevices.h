@@ -10,15 +10,31 @@ class ListDevices : public QObject
 public:
     explicit ListDevices(QObject *parent = nullptr);
     virtual ~ListDevices();
-
+    Q_INVOKABLE void newDevice(QString shortDesc,
+                               int idDevice,
+                               int operation,
+                               int startAddr,
+                               int count,
+                               QString portName,
+                               int typeReg,
+                               bool state);
 signals:
-    void newDevice();
-    void portChanged(QString);
-    void updatePorts();
+    void newDevice(QString);
+private slots:
+    void parentDevice(QObject *);
+private:
+    QList<DeviceRTU*> _devices;
 
-public slots:
-//    void onPortChanged();
+    void clear();
 
+    QString _shortDesc;
+    int _idDevice;
+    int _operation;
+    int _startAddr;
+    int _count;
+    QString _portName;
+    int _typeReg;
+    bool _state;
 
 };
 

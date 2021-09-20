@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 ListView {
     id: listDevice
     width: selectPort.width
-    model: deviceList
+//    model: deviceList
     header: Rectangle {
         id: baseHeader
         width: parent.width
@@ -29,8 +29,8 @@ ListView {
             anchors.centerIn: parent
             width: listDevice.width - 20
             height: 50
-            color: listDevice.currentIndex == index ? "#353637" : "#494d50"
-            layer.enabled: listDevice.currentIndex == index ? false : true
+//            color: listDevice.currentIndex == index ? "#353637" : "#494d50"
+//            layer.enabled: listDevice.currentIndex == index ? false : true
             layer.effect: DropShadow {
                 verticalOffset: 1
                 color: "#90000000"
@@ -39,7 +39,7 @@ ListView {
             }
             Text { //"shortDesc" << "idDevice" << "stateDevice";
                 id: nameDev
-                text: shortDesc
+//                text: shortDesc
                 font.pointSize: 14
                 color: removed ? "grey" : "white"
                 anchors.verticalCenter: parent.verticalCenter
@@ -58,7 +58,7 @@ ListView {
                 width: 40
                 height: 10
                 radius: 2
-                color: stateDevice ? "green" : "red"
+//                color: stateDevice ? "green" : "red"
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.margins: 15
